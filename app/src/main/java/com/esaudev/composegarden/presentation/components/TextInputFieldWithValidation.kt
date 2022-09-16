@@ -1,5 +1,6 @@
 package com.esaudev.composegarden.presentation.components
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,8 +15,8 @@ import org.intellij.lang.annotations.JdkConstants
 @Composable
 fun TextInputFieldWithValidation(
     modifier: Modifier,
-    userName: String,
-    userNameHasError: Boolean,
+    userNameProvider: () -> String,
+    hasErrorProvider: () -> Boolean,
     onUserNameChange: (String) -> Unit,
 ) {
 
@@ -26,11 +27,11 @@ fun TextInputFieldWithValidation(
     ) {
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = userName,
+            value = userNameProvider(),
             onValueChange = { onUserNameChange(it) }
         )
 
-        if (userNameHasError) {
+        AnimatedVisibility(visible = hasErrorProvider()) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = "Username not available. Please choose a different one.",

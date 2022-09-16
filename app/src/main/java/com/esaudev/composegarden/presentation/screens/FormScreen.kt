@@ -25,11 +25,9 @@ fun FormScreen(
     ) {
         TextInputFieldWithValidation(
             modifier = Modifier.padding(10.dp),
-            userName = viewModel.username,
-            userNameHasError = userNameHasError,
-            onUserNameChange = {
-                viewModel.updateUsername(input = it)
-            }
+            userNameProvider = viewModel::username,
+            hasErrorProvider = { userNameHasError },
+            onUserNameChange =  viewModel::updateUsername
         )
     }
 }
