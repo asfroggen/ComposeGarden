@@ -1,4 +1,4 @@
-package com.esaudev.composegarden.presentation.screens
+package com.esaudev.composegarden.presentation.screens.form
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
